@@ -9,7 +9,7 @@ class DataProcessor(ABC):
 
     @abstractmethod
     def validate(self, data: Any) -> bool:
-        return False
+        pass
 
     @abstractmethod
     def ingest(self, data: Any) -> None:
