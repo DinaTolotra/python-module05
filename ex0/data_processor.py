@@ -16,8 +16,15 @@ class DataProcessor(ABC):
         pass
 
     def output(self) -> tuple[int, str]:
-        self._generated += 1
-        return (self._generated - 1, self._data.pop(0))
+        index: int
+        value: str
+        if len(self._data) > 0:
+            index = self._generated
+            value = self._data.pop(0)
+            self._generated += 1
+        else:
+            raise IndexError("No stored data")
+        return (index, value)
 
 
 class NumericProcessor(DataProcessor):
