@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from typing import Any, Protocol
-from sys import stderr
 
 
 class ExportPlugin(Protocol):
@@ -165,7 +164,6 @@ class DataStream:
         for proc in self._processor_list:
             output_list = list()
             remaining = proc.get_data_count()
-            remaining -= proc.get_processed_count()
             for i in range(min(nb, remaining)):
                 output_list.append(proc.output())
             plugin.process_output(output_list)
